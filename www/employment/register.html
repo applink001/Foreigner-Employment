@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" type="text/css" href="../css/register.css" />
+    <link rel="stylesheet" type="text/css" href="../css/animate-custom.css" />
+    <script src="components/loader.js"></script>
+    <script>
+        //
+        // TODO: Write JavaScript code here
+        //
+    </script>
+</head>
+<body>
+    <!-- TODO: Please edit here -->
+    <div class="container">
+        <section>
+            <div id="container_demo" >
+                <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                <a class="hiddenanchor" id="toregister"></a>
+                <a class="hiddenanchor" id="tologin"></a>
+                <div id="wrapper">
+                    <div id="login" class="animate form">
+                        <form  action="mysuperscript.php" autocomplete="on"> 
+                            <h1 class="main title">仕事は出会い</h1>
+                            <h1 class="login title">端末データ移行</h1>
+                            <p> 
+                                <input id="password" name="password" required="required" type="password" placeholder="パスワード (数字6桁以上)" />
+                            </p>
+                            <p>
+                                <input id="phonenumber" name="phonenumber" required="required" type="phonenumber" placeholder="電話番号"/>
+                            </p>
+                            <p class="login button"> 
+                                <input type="submit" value="Login" /> 
+							</p>
+                            <p class="change_link signin">
+                                <a id="to_register" href="#toregister">JoinUs</a>
+                                <!--<input type="button" value="JoinUs" id="to_register" /> -->
+							</p>
+                        </form>
+                    </div>
+
+                    <div id="register" class="animate form">
+                        <form  action="mysuperscript.php" autocomplete="on"> 
+                            <h1 class="main title">仕事は出会い</h1>
+                            <h1 class="register title">新規登録フォーム</h1>
+                            <p> 
+                                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="氏名" />
+                            </p>
+                            <p> 
+                                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="パスワード (数字6桁以上)"/>
+                            </p>
+                            <p>
+                                <input id="phonenumbersignup" name="phonenumbersignup" required="required" type="phonenumber" placeholder="電話番号"/>
+                            </p>
+                            <div class="select">
+                                <select name="State">
+                                    <option value="-1" selected="">select..</option>
+                                    <option value="New Delhi">NEW DELHI</option>
+                                    <option value="Mumbai">MUMBAI</option>
+                                    <option value="Goa">GOA</option>
+                                    <option value="Bihar">BIHAR</option>
+                                </select>
+                            </div>
+                            <p class="signin button">
+								<input type="submit" value="新規登録"/>
+							</p>
+                            <p class="change_link login">
+                                <a id="to_login" href="#tologin">端末データ移行はこちら</a>
+								<!--<input type="button" value="端末データ移行はこちら" id="to_login" /> -->
+							</p>
+                        </form>
+                    </div>
+					
+                </div>
+            </div>  
+        </section>
+    </div>
+</body>
+</html>

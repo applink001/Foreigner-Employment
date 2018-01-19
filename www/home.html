@@ -1,0 +1,2095 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+  <script src="lib/angular/angular.min.js"></script>
+    <script src="components/loader.js"></script>
+  <script src="lib/onsenui/js/onsenui.min.js"></script>
+  <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/global.js"></script>
+  <script src="js/apis.js"></script>
+  <script src="home.js"></script>  
+  <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+  <link rel="stylesheet" href="css/avatar_edit.css">
+  <link rel="stylesheet" href="css/cropper.min.css">
+  <link rel="stylesheet" href="css/cropper_custom.css"> 
+  <script>
+     //ons.bootstrap()
+    //   // .controller('ProtalContrller', function() {
+    //   // });
+    // ons.ready(function() {
+    //     console.log("Onsen UI is ready!");
+    // });
+  </script>
+</head>
+<body ng-controller="AppController">
+<ons-page>
+    <ons-toolbar class="main_toolbar">
+      <div class="left">
+          <div class="toolbar title area">
+              <img src="resource/main_icon.png" alt="" />
+              <h1 class="main title">仕事は出会い</h1>
+          </div>
+      </div>
+      <div class="right">
+          <h4>ようこそ、◯◯さん</h4>
+      </div>
+    </ons-toolbar>
+    <ons-tabbar id="appTabbar" position="auto">
+      <ons-tab page="home.html" active>
+        <div style="position: relative; width: 100%;">
+            <p style="text-align: center;">
+                <img src="resource/home.png" alt="img" style="width: 5.4vh; margin-top: 1.08vh; vertical-align: top;"/>
+            </p>
+            <div style="position: absolute; width: 100%; left: 0; top: 6.77vh;">
+                <p style="text-align: center; font-size: 1.5vh; height: 1.62vh; color: #2e609f; line-height: 1.62vh;">ホーム</p>
+            </div>
+        </div>
+      </ons-tab>
+      <ons-tab page="search.html">
+        <div style="position: relative; width: 100%;">
+            <p style="text-align: center;">
+                <img src="resource/search.png" alt="img" style="width: 5.4vh; margin-top: 1.08vh; vertical-align: top;"/>
+            </p>
+            <div style="position: absolute; width: 100%; left: 0; top: 6.77vh;">
+                <p style="text-align: center; font-size: 1.5vh; height: 1.62vh; color: #2e609f; line-height: 1.62vh;">仕事検索</p>
+            </div>
+        </div>
+      </ons-tab>
+      <ons-tab page="mail_list.html">
+        <div style="position: relative; width: 100%;">
+            <p style="text-align: center;">
+                <img src="resource/mail.png" alt="img" style="width: 5.4vh; margin-top: 1.08vh; vertical-align: top;"/>
+            </p>
+            <div style="position: absolute; width: 100%; left: 0; top: 6.77vh;">
+                <p style="text-align: center; font-size: 1.5vh; height: 1.62vh; color: #2e609f; line-height: 1.62vh;">メールボックス</p>
+            </div>
+        </div>
+      </ons-tab>
+      <ons-tab page="favorite_list.html">
+        <div style="position: relative; width: 100%;">
+            <p style="text-align: center;">
+                <img src="resource/favorite.png" alt="img" style="width: 5.4vh; margin-top: 1.08vh; vertical-align: top;"/>
+            </p>
+            <div style="position: absolute; width: 100%; left: 0; top: 6.77vh;">
+                <p style="text-align: center; font-size: 1.5vh; height: 1.62vh; color: #2e609f; line-height: 1.62vh;">お気に入り</p>
+            </div>
+        </div>
+      </ons-tab>
+      <ons-tab  page="myPage.html">
+        <div style="position: relative; width: 100%;">
+            <p style="text-align: center;">
+                <img src="resource/profile.png" alt="img" style="width: 5.4vh; margin-top: 1.08vh; vertical-align: top;"/>
+            </p>
+            <div style="position: absolute; width: 100%; left: 0; top: 6.77vh;">
+                <p style="text-align: center; font-size: 1.5vh; height: 1.62vh; color: #2e609f; line-height: 1.62vh;">マイページ</p>
+            </div>
+        </div>
+      </ons-tab>
+    </ons-tabbar>
+    <script>
+      // ons.getScriptPage().addEventListener('prechange', function(event) {
+      //   if (event.target.matches('#appTabbar')) {
+      //     event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+      //   }
+      // });
+    </script>
+    <style>
+        ons-toolbar.main_toolbar {
+            height: 8.46vh;
+        }
+        
+        .main_toolbar .toolbar__right {
+            width: 50%;
+        }
+        
+        .main_toolbar:not(.main_toolbar--transparent) + .page__background, .main_toolbar:not(.main_toolbar--cover-content) + .page__background + .page__content {
+            top: 8.46vh !important;
+        }
+        
+        div.toolbar.title {
+            position: absolute;
+            display: flex;
+            color: #000;
+            left: 2.56vw;
+            height: 100%;
+            width: 50%;
+            background-color: transparent;
+        }
+        
+        div.title img {
+            height: 5.76vh;
+            margin-top: 1.35vh;
+        }
+        
+        h1.main {
+            font-size: 5.33vw;
+            height: 5.76vh;
+            line-height: 5.76vh;
+            margin-top: 1.35vh;
+            color: #000;
+        }
+        
+        h4 {
+            height: 5.76vh;
+            line-height: 5.76vh;
+            margin-top: 1.35vh;
+            font-size: 3.2vw;
+            color: #000;
+            margin-right: 2.56vw;
+            text-align: right;
+        }
+        
+        .tabbar {
+            height: 9.22vh;
+        }
+        
+        .tabbar__button {
+            height: 9.22vh;
+            line-height: 9.22vh;
+        }
+    </style>
+</ons-page>
+
+<div class="container" id="crop-avatar">
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" style="font-size: 30px;">&times;</button>
+                    <h4 class="modal-title" id="avatar-modal-label" style="font-size: 18px; font-weight: 500; text-align: left;">トリミング</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="avatar-body">
+                        <div class="img-container bootstrap-modal-cropper">
+                            <img id="origin_image" src="" style="max-width: 100%; max-height: 80%;">
+                        </div>
+
+                        <div class="row avatar-btns">
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary btn-block avatar-save" id="cropSave" style="background-color: #d2d2d2">確認</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+</div>
+
+<template id="home.html">
+<ons-navigator id="appNavigator1">
+    <ons-page ng-controller="InitHome" ons-show="ShowPage();">
+        <ons-list style="background-color: #5ea988; height: 52.2vh;">
+            <p class="search_type title">キーワードで仕事を探す</p>
+            <div style="margin-left: 8.18vw;">
+                <input id="search-input" name="search-input" required="required" type="text" placeholder="例：ライン作業　東京" />
+                <ons-button style="background:#e64435; line-height: 4.61vh; text-align: center; padding: 0;" id="search_button" onclick="fn.pushPage(1, {'id': 'search_list.html', 'title': 'Search List'})">
+                    <span class="fa fa-search" style="font-size: small; height: 4.61vh; line-height: 4.61vh;"></span>
+                </ons-button>
+            </div>
+            <p class="search_type title">条件で仕事を探す</p>
+            <div class="select">
+                <ons-select name="Address">
+                    <option value="-1" disabled selected="">勤務地</option>
+                    <option value="New Delhi">NEW DELHI</option>
+                    <option value="Mumbai">MUMBAI</option>
+                    <option value="Goa">GOA</option>
+                    <option value="Bihar">BIHAR</option>
+                </ons-select>
+            </div>
+            <div class="select" style="margin-top: 0.72vh;">
+                <ons-select name="Working">
+                    <option value="-1" disabled selected="">職種</option>
+                    <option value="New Delhi">NEW DELHI</option>
+                    <option value="Mumbai">MUMBAI</option>
+                    <option value="Goa">GOA</option>
+                    <option value="Bihar">BIHAR</option>
+                </ons-select>
+            </div>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="search button" style="margin-top: 2.34vh;"><span class="fa fa-search"></span><span style="margin-left: 2vw;" onclick="fn.pushPage(1, {'id': 'search_list.html', 'title': 'Search List'})">この条件で仕事を探す</span></ons-button>
+                    <ons-button class="search button" style="margin-top: 2.34vh;"><span class="fa fa-search"></span><span style="margin-left: 2vw;">もっと詳しく検索する</span></ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #e2b943;">サイトからのお知らせ</ons-list-title>
+        <ons-list style="background-color: #f8edd2; height: 34.92vh; position: relative;">
+            <p style="text-align: center; margin-top: 0.98vh;">
+                <ons-button class="list_item" modifier="quiet" ng-repeat="item in notice_list">{{item.date}} {{item.title}}</ons-button>
+                <!--<ons-button class="list_item" modifier="quiet" style="margin-top: 0.98vh;">2017/01/03  サイトからのアナウンス3</ons-button>
+                <ons-button class="list_item" modifier="quiet" >2017/01/02  サイトからのアナウンス2</ons-button>
+                <ons-button class="list_item" modifier="quiet" >2017/01/01  サイトからのアナウンス1</ons-button>-->
+            </p>
+            <div style="width: 100%; position: absolute; top: 27.57vh; ">
+                <p style="text-align: center">
+                    <ons-button class="button message" onclick="fn.pushPage(1, {'id': 'notice_list.html', 'title': 'Notice List'})">お知らせをもっと見る</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #667ab2;">ニュース（日本）</ons-list-title>
+        <ons-list style="background-color: #e4e8f1; height: 34.92vh; position: relative;">
+            <p style="text-align: center; margin-top: 0.98vh;">
+                <ons-button class="list_item" modifier="quiet" ng-repeat="item in news_list">{{item.title}}</ons-button>
+                <!--<ons-button class="list_item" modifier="quiet" style="margin-top: 0.98vh;">RSSで取得したニュースタイトル（リンク飛び先は外部ブラウザ）</ons-button>
+                <ons-button class="list_item" modifier="quiet">RSSで取得したニュースタイトル（リンク飛び先は外部ブラウザ）</ons-button>
+                <ons-button class="list_item" modifier="quiet">RSSで取得したニュースタイトル（リンク飛び先は外部ブラウザ）</ons-button>
+                <ons-button class="list_item" modifier="quiet">RSSで取得したニュースタイトル（リンク飛び先は外部ブラウザ）</ons-button>-->
+            </p>
+            <div style="width: 100%; position: absolute; top: 27.57vh; ">
+                <p style="text-align: center">
+                    <ons-button class="button news" style="font-size: 2.93vw; line-height: 1.98vh; padding-top: 0.48vh;">プライバシー<br>ポリシー</ons-button>
+                    <ons-button class="button news">会社概要</ons-button>
+                    <ons-button class="button news" ng-click="NextButton();">お問い合せ</ons-button>
+                </p>
+            </div>
+        </ons-list>
+    <style>    
+      p.title {
+          margin-left: 8.18vw;
+          margin-top: 3.78vh;
+          color: #fff;
+          font-size: 3.73vw;
+          margin-bottom: 2.01vh;
+      }
+      
+      #search-input{
+            background: #f2f2f2;
+            width: 64.43vw;
+            height: 4.61vh;
+            margin-left: 1vw;
+            border: none;
+        	-webkit-appearance: textfield;
+        	-webkit-box-sizing: border-box;
+        	  -moz-box-sizing : border-box;
+        	       box-sizing : border-box;
+        	-webkit-border-radius: 3px;
+        	   -moz-border-radius: 3px;
+        	        border-radius: 3px;
+        	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	-webkit-transition: all 0.2s linear;
+        	   -moz-transition: all 0.2s linear;
+        	     -o-transition: all 0.2s linear;
+        	        transition: all 0.2s linear;
+        }
+      
+      .select {
+            width: 80.23vw;
+            margin: auto;
+        	-webkit-box-sizing: border-box;
+        	-moz-box-sizing : border-box;
+        	box-sizing : border-box;
+        	-webkit-border-radius: 3px;
+        	-moz-border-radius: 3px;
+        	border-radius: 3px;
+        	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	-moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	-webkit-transition: all 0.2s linear;
+        	-moz-transition: all 0.2s linear;
+        	-o-transition: all 0.2s linear;
+        	transition: all 0.2s linear;
+        	position: relative;
+        	display: block;
+            height: 4.61vh;
+        	line-height: 4.61vh;
+        	background: #f2f2f2;
+            color: #333;
+        	overflow: hidden;
+        }
+      
+        ons-select {
+            width: 100%;
+        	height: 100%;
+            margin: 0;
+        	color: #333;
+        	cursor: pointer;
+            background-color: #f2f2f2;
+            border: 1px solid #f2f2f2;
+        }
+        ons-select::-ms-expand {
+        	display: none;
+        }
+        
+        ons-select.select .select-input {
+            height: 4.61vh;
+            line-height: 4.61vh;
+            color: #333;
+            font-size: 3.73vw;
+            padding: 0 1.6vw;
+            background-color: #f2f2f2;
+        }
+        .select::after {
+            height: 4.61vh;
+        	content: '\25BC';
+        	position: absolute;
+        	top: 0;
+        	right: 0;
+        	bottom: 0;
+        	padding: 0 2.68vw;
+        	background: #e64435;
+        	pointer-events: none;
+            color: #fff;
+            font-size: xx-small;
+        }
+        .select::after {
+        	-webkit-transition: .25s all ease;
+        	-o-transition: .25s all ease;
+        	transition: .25s all ease;
+        }
+        
+        ons-button.button.search, ons-button.button.message{
+            width: 52.21vw;
+            height: 6.12vh;
+        	cursor: pointer;	
+        	background-color: #e64435;
+        	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+        	color: #fff;
+        	font-size: 3.73vw;	
+        	border: 1px solid #e64435;
+            line-height: 6.12vh;
+            text-align: center;
+            padding: 0;
+        	-webkit-border-radius: 3.06vh;
+        	   -moz-border-radius: 3.06vh;
+        	        border-radius: 3.06vh;
+            -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+        	-webkit-transition: all 0.2s linear;
+        	   -moz-transition: all 0.2s linear;
+        	     -o-transition: all 0.2s linear;
+        	        transition: all 0.2s linear;
+        }
+        
+        .list_item.button--quiet {
+            min-width: 85.67vw;
+            height: 4.82vh;
+            color: #383838;
+            font-size: 3.2vw;
+            border-bottom: 1px dotted #383838; 
+            padding: 1.37vh 0 0 0; 
+            line-height: 3.45vh; 
+            text-align: center;
+        }
+                
+        ons-input.button{
+            width: 52.21vw;
+            height: 6.12vh;
+            cursor: pointer;	
+        	background-color: #e64435;
+        	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+        	border: 1px solid #e64435;
+            text-align: center;
+        	-webkit-border-radius: 3.06vh;
+        	   -moz-border-radius: 3.06vh;
+        	        border-radius: 3.06vh;
+            -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+        	-webkit-transition: all 0.2s linear;
+        	   -moz-transition: all 0.2s linear;
+        	     -o-transition: all 0.2s linear;
+        	        transition: all 0.2s linear;
+        }
+        
+        ons-button.news{
+             width: 27.51vw;
+             height: 4.93vh;
+             /*top: 5.75vh;*/
+            cursor: pointer;	
+        	background-color: #667ab2;
+        	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+        	color: #fff;
+        	font-size: 3.73vw;	
+        	border: 1px solid #667ab2;
+            line-height: 4.93vh;
+            padding: 0;
+        	-webkit-border-radius: 3.06vh;
+        	   -moz-border-radius: 3.06vh;
+        	        border-radius: 3.06vh;
+            -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+        	-webkit-transition: all 0.2s linear;
+        	   -moz-transition: all 0.2s linear;
+        	     -o-transition: all 0.2s linear;
+        	        transition: all 0.2s linear;
+        }
+        #search_button {
+            width: 15.04vw;
+            height: 4.61vh;
+            border-radius: 2.3vh;
+            -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+        }
+        
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+        }
+        
+    </style>
+  </ons-page>
+</ons-navigator>
+</template>
+
+<template id="search.html">
+<ons-navigator id="appNavigator2">    
+  <ons-page id="forms-page">
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">仕事を探す</div>
+    </ons-toolbar>
+    <ons-list style="background-color: #e2b943; height: 16.2vh;">
+        <p class="search_type title">キーワードを指定</p>
+        <input id="search-input" name="search-input" required="required" type="text" placeholder="例：ライン作業　東京" style="margin-left: 9.18vw;" />
+    </ons-list>
+    
+    <ons-list style="background-color: #f8edd2; height: 65.87vh; padding: 1.73vh 8.45vw;">            
+        <p style="color: #383838; font-size: 3.73vw; line-height: 3.31vh; font-weight: bold;">条件を指定</p>
+        <div style="position: relative; width: 100%; margin-top: 1.73vh; height: 4.75vh;">
+            <p style="color: #383838; font-size: 3.73vw; height: 4.75vh; line-height: 4.75vh;">職種</p>
+            <ons-select class="select_input">
+                <option value="ライン作業" disabled selected="">ライン作業</option>
+                <option value="React">React</option>
+                <option value="Angular">Angular</option>
+            </ons-select>
+        </div>
+        <div style="position: relative; width: 100%; height: 17.7vh; margin-top: 2.16vh;">
+            <p style="color: #383838; font-size: 3.73vw; height: 4.75vh; line-height: 4.75vh;">雇用形態</p>
+            <p style="text-align: left; position: absolute; left: 17.66vw; top: 0; ">
+                <ons-button modifier="cta" class="button_select">正社員</ons-button>
+                <ons-button modifier="cta" class="button_select">契約社員</ons-button>
+                <ons-button modifier="cta" class="button_select">パート・アルバイト</ons-button>
+                <ons-button modifier="cta" class="button_select">一般派遣</ons-button>
+                <ons-button modifier="cta" class="button_select">特定派遣</ons-button>
+            </p>
+        </div>
+        <div style="position: relative; width: 100%; height: 11.44vh; margin-top: 2.16vh;">
+            <p style="color: #383838; font-size: 3.73vw; height: 4.75vh; line-height: 4.75vh;">給料報酬</p>
+            <p style="text-align: left; position: absolute; left: 17.66vw; top: 0; ">
+                <ons-button modifier="cta" class="button_select">月給</ons-button>
+                <ons-button modifier="cta" class="button_select">週給</ons-button>
+                <ons-button modifier="cta" class="button_select">日給</ons-button>
+                <ons-button modifier="cta" class="button_select">報奨金</ons-button>
+                <ons-button modifier="cta" class="button_select">出来高制</ons-button>
+                <ons-button modifier="cta" class="button_select">年棒制</ons-button>
+            </p>
+        </div>
+        <div style="position: relative; width: 100%; margin-top: 2.16vh; height: 4.75vh;">
+            <p style="color: #383838; font-size: 3.73vw; height: 4.75vh; line-height: 4.75vh;">エリア</p>
+            <ons-select class="select_input">
+                <option value="-1" disabled selected="">東京都（23区内）</option>
+                <option value="React">React</option>
+                <option value="Angular">Angular</option>
+              </ons-select>
+        </div>
+        <div style="width: 100%;">
+            <p style="text-align: center">
+                <ons-button class="search button" style="margin-top: 4.96vh;" onclick="fn.pushPage(2, {'id': 'search_list.html', 'title': 'Search List'})"><span class="fa fa-search"></span><span style="margin-left: 2vw;">検 索</span></ons-button>
+            </p>
+        </div>
+    </ons-list>
+    
+    <style>
+      .sub_toolbar:not(.sub_toolbar--transparent) + .page__background, .sub_toolbar:not(.sub_toolbar--cover-content) + .page__background + .page__content {
+        top: 8.1vh !important;
+      }
+      
+      .right-icon {
+        margin-left: 10px;
+      }
+
+      .right-label {
+        color: #666;
+      }
+      
+      ons-select.select_input {
+          position: absolute;
+          width: 63.98vw; 
+          height: 4.75vh; 
+          padding-left: 2px;
+          left: 17.66vw;
+          top: 0;
+          background-color: #f2f2f2;
+      }
+      
+      .select_input::after {
+            height: 4.75vh;
+            content: '\25BC';
+        	position: absolute;
+        	top: 0;
+        	right: 0;
+        	bottom: 0;
+        	padding: 0 2.68vw;
+        	background: #e64435;
+        	pointer-events: none;
+            color: #fff;
+            font-size: xx-small;
+        }
+      
+      ons-select.select_input .select-input {
+            height: 4.75vh;
+            color: #333;
+            font-size: 3.73vw;
+            padding: 0 1.6vw;
+            line-height: 4.75vh;
+            background-color: #f2f2f2;
+            border: 1px solid #f2f2f2;
+        }
+      
+      ons-button.button_select {
+          height: 5.18vh;
+          line-height: 250%;
+          color: #fff;
+          background-color: #e64435;
+          border-radius: 2.59vh;
+          margin-bottom: 1.08vh;
+          margin-right: 1.3vw;
+          font-size: 3.2vw;
+      }
+      
+      #search-input{
+            background: #f2f2f2;
+            width: 64.43vw;
+            height: 4.61vh;
+            margin-left: 1vw;
+            padding: 10px 5px 10px 5px;
+            border: none;
+            -webkit-appearance: textfield;
+        	-webkit-box-sizing: border-box;
+        	  -moz-box-sizing : border-box;
+        	       box-sizing : border-box;
+        	-webkit-border-radius: 3px;
+        	   -moz-border-radius: 3px;
+        	        border-radius: 3px;
+        	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+        	-webkit-transition: all 0.2s linear;
+        	   -moz-transition: all 0.2s linear;
+        	     -o-transition: all 0.2s linear;
+        	        transition: all 0.2s linear;
+        }
+    </style>
+  </ons-page>
+  </ons-navigator>
+</template>
+
+<template id="search_list.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">仕事を探す</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #fff; height: 26.35vh; padding: 0 2.3vw;">            
+            <p style="color: #383838; font-size: 2.67vw; height: 2.59vh; line-height: 2.59vh; margin-top: 1.3vh; font-weight: bold;">仕事の検索結果 - 123件</p>
+            <div style="position: relative; width: 100%; margin-top: 1.15vh; height: 9.72vh; ">
+                <p style="width: 22.71vw; height: 100%; padding-top: 1.55vh; color: #383838; font-size: 3.73vw; line-height: 3.31vh; font-weight: bold; text-align: center;">現在の<br>検索条件</p>
+                <div style="position: absolute; left: 25.01vw; top: 0; width: 63.66vw; height: 9.72vh;">
+                    <div style="position: relative; width: 100%; height: 33.33%; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 2.67vw; line-height: 3.24vh;">キーワード</p>
+                        <p style="position: absolute; left: 21.5vw; top: 0; color: #383838; font-size: 2.67vw; line-height: 3.24vh;">テストテキストテストテキス</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 33.33%; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 2.67vw; line-height: 3.24vh;">条件</p>
+                        <p style="position: absolute; left: 21.5vw; top: 0; color: #383838; font-size: 2.67vw; line-height: 3.24vh;">テストテキストテストテキス</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 33.33%; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 2.67vw; line-height: 3.24vh;">エリア</p>
+                        <p style="position: absolute; left: 21.5vw; top: 0; color: #383838; font-size: 2.67vw; line-height: 3.24vh;">テストテキストテストテキス</p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%">
+                <p style="text-align: center">
+                    <ons-button class="search button" style="margin-top: 2.16vh;"><span class="fa fa-search"></span><span style="margin-left: 2vw;">検索条件を再指定する</span></ons-button>
+                    <ons-button modifier="quiet" style="width: 50%; height: 3.31vh;color: #383838;font-size: 2.67vw; line-height: 3.31vh; padding: 0;">並べ替え</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title style="height: 4.32vh; background-color: #e2b943; color: #fff; padding: 0 4.22vw;">
+            <div style="color: #fff; font-size: 2.67vw; line-height: 2.59vh; margin-top: 0.86vh; float: left;">株式会社◯◯◯◯◯</div>
+            <div style="color: #fff; font-size: 2.67vw; line-height: 2.59vh; margin-top: 0.86vh; float: right;">募集人数：20人</div>
+        </ons-list-title>
+        <ons-list style="background-color: #f8edd2; height: 51.4vh;padding:2.88vh 4.96vw;">            
+            <div style="position: relative; width: 100%; height: 28.8vh; ">
+                <div style="width: 22.71vw; height: 13.61vh; margin-left: 3.1vw; background-color: #383838;"></div>
+                <div style="position: absolute; left: 29.91vw; top: 0; width: 57.58vw; height: 28.8vh;">
+                    <div style="position: relative; width: 100%; height: 2.59vh; margin-top: 0.6vh;">
+                        <p style="width: 12.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">新着</p>
+                        <p style="width: 14.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">一般派遣</p>
+                        <p style="width: 12.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">月給</p>
+                    </div>
+                    <p style="margin-top: 0.8vh; color: #383838; font-size: 3.73vw; line-height: 3.46vh; font-weight: bold;">仕事のタイトルテストテキスト</p>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 4vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">職種</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">給与</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">勤務時間</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">場所</p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <p style="text-align: center; margin-top: 9.07vh;">
+                    <ons-button class="button detail" onclick="fn.pushPage(cur_tab_index, {'id': 'entry_detail.html', 'title': 'Entry Detail'})">詳細を確認する</ons-button>
+                    <ons-button class="button detail">お気に入りに追加</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+            ons-button.button.detail{
+                width: 39.92vw;
+                height: 6.48vh;
+                cursor: pointer;	
+            	background-color: #e64435;
+            	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+            	color: #fff;
+            	font-size: 3.73vw;	
+            	border: 1px solid #e64435;
+                line-height: 6.48vh;
+                text-align: center;
+                padding: 0;
+            	-webkit-border-radius: 3.06vh;
+            	   -moz-border-radius: 3.06vh;
+            	        border-radius: 3.06vh;
+            	-webkit-transition: all 0.2s linear;
+            	   -moz-transition: all 0.2s linear;
+            	     -o-transition: all 0.2s linear;
+            	        transition: all 0.2s linear;
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="entry_detail.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">仕事を探す</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #e2b943; height: 29.66vh;padding: 0 4.48vw;">            
+            <p style="color: #fff; font-size: 2.67vw; height: 2.59vh; line-height: 2.59vh; margin-top: 3.46vh;">株式会社◯◯◯◯◯</p>
+            <p style="color: #fff; font-size: 3.73vw; height: 3.31vh; line-height: 3.31vh;">仕事のタイトルテストテキスト</p>
+            <div style="width: 100%; height: 12.96vh; margin-top: 2.09vh; text-align: center;">
+                <div style="width: 23.03vw; height: 12.96vh; margin-left: 8.98vw; background-color: #383838; float: left;"></div>
+                <div style="width: 23.03vw; height: 12.96vh; margin-left: 3.07vw; background-color: #383838; float: left;"></div>
+                <div style="width: 23.03vw; height: 12.96vh; margin-left: 3.07vw; background-color: #383838; float: left;"></div>
+            </div>
+            <div style="width: 100%; text-align: center;">
+                <p style="color: #fff; font-size: 2.67vw; height: 2.59vh; line-height: 2.59vh; margin-top: 1.87vh;">掲載期間 2017/12/01〜2018/01/01</p>
+            </div>
+        </ons-list>
+        <ons-list style="background-color: #f8edd2; height: 78.83vh;padding:0 8.32vw;"> 
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail" style="margin-top: 4.32vh;" >エリア</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">職種</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">仕事内容</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">雇用形態</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">給料体制</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">給料</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">勤務時間</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">休日・休暇</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">勤務時間</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">最寄り駅</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">場所</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">応募資格</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">待遇</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">募集人数</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">PR</p>
+            </div>
+        </ons-list>
+        <ons-list style="background-color: #e4e8f1; height: 39.45vh;padding:0 8.32vw;"> 
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail" style="margin-top: 2.66vh;">会社名</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">会社URL</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">会社住所</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 3.6vh; border-bottom: 1px dotted #383838;">
+                <p class="worktype detail">会社PR</p>
+            </div>
+            <div style="width: 100%; height: 12.96vh; margin-top: 3.67vh;">
+                <div style="width: 23.03vw; height: 12.96vh; margin-left: 31.13vw; background-color: #383838; "></div>
+            </div>
+        </ons-list>
+        <ons-list style="background-color: #f8edd2; height: 29.95vh; padding:0;">
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 3.46vh;"onclick="fn.pushPage(cur_tab_index, {'id': 'entry.html', 'title': 'Entry'})">応募画面に進む</ons-button>
+                </p>
+            </div>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button detail" style="height: 4.93vh; margin-top: 2.59vh; line-height: 4.93vh;">お気に入りに追加</ons-button>
+                </p>
+            </div>
+            
+            <div style="width: 100%;">
+                <p style="text-align: center; margin-top: 3.6vh;">
+                    <ons-button modifier="quiet"><img src="resource/line_icon.png" alt="line" style ="width: 10.24vw; height: 10.24vw;"/></ons-button>
+                    <ons-button modifier="quiet"><img src="resource/twitter_icon.png" alt="twitter" style ="width: 10.24vw; height: 10.24vw;"/></ons-button>
+                    <ons-button modifier="quiet"><img src="resource/facebook_icon.png" alt="facebook" style ="width: 10.24vw; height: 10.24vw;"/></ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            p.worktype.detail {
+                width: 100%;
+                height: 3.6vh;
+                line-height: 3.6vh;
+                color: #383838;
+                font-size: 3.73vw;
+                margin-top: 1.15vh;
+            }
+            
+            ons-button.button.detail{
+                width: 39.92vw;
+                height: 6.48vh;
+                cursor: pointer;    
+            	background-color: #e64435;
+            	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+            	color: #fff;
+            	font-size: 3.73vw;	
+            	border: 1px solid #e64435;
+                line-height: 6.48vh;
+                text-align: center;
+                padding: 0;
+            	-webkit-border-radius: 3.06vh;
+            	   -moz-border-radius: 3.06vh;
+            	        border-radius: 3.06vh;
+            	-webkit-transition: all 0.2s linear;
+            	   -moz-transition: all 0.2s linear;
+            	     -o-transition: all 0.2s linear;
+            	        transition: all 0.2s linear;
+            }
+            
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="entry.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">仕事を探す</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #f8edd2; height: 26.56vh;padding:0 8.45vw;">            
+            <p style="margin-top: 4.03vh; color: #383838; font-size: 3.73vw; line-height: 3.31vh; font-weight: bold;">株式会社◯◯◯◯◯<br>仕事のタイトルテストテキスト</p>
+            <p style="color: #383838; font-size: 3.73vw; line-height: 3.31vh;">に応募いたします。<br>現在のプロフィールに記載されている内容が企業に送信されますので、間違いがないかどうかもう一度チェックしてください。</p>
+        </ons-list>
+        
+        <ons-list style="background-color: #e2b943; height: 47.52vh;padding:0 4.96vw;">
+            <p style="color: #ffffff; font-size: 3.73vw; line-height: 3.31vh; margin: 2.52vh 3.49vw 0.8vh 3.49vw;">応募にあたって、企業に要望や伝達がある場合は記入してください。</p>
+            <textarea type="text" style="width: 100%; height: 21.6vh; background-color: #f2f2f2; padding: 3.33vw 3.33vw; color: #383838; line-height: 3.31vh; border: none; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; ">テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト</textarea>
+            
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 4.68vh;">仕事に応募する</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="entry_show.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">仕事応募</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #f8edd2; height: 73.87vh; padding: 0 8.45vw 0 8.45vw;">
+            <p style="margin-top: 4.03vh; color: #383838; font-size: 3.73vw; line-height: 3.31vh; font-weight: bold;">株式会社◯◯◯◯◯<br>仕事のタイトルテストテキスト</p>
+            <p style="color: #383838; font-size: 3.73vw; line-height: 3.31vh;">に応募いたします。<br>現在のプロフィールに記載されている内容が企業に送信されますので、間違いがないかどうかもう一度チェックしてください。</p>
+            <p style="color: #e64435; font-size: 3.73vw; line-height: 3.31vh; margin-top: 4.61vh;">プロフィールの記入漏れがあるので、応募できません。プロフィールの確認を行い、すべて入力してください。</p>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 24.84vh;">プロフィールの確認へ</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="ques_show.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">お問い合わせ</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #f8edd2; height: 73.79vh; padding: 0 5.12vw 0 5.12vw;">
+            <p style="margin-top: 2.88vh; color: #383838; font-size: 3.73vw; line-height: 3.31vh; padding-left: 3.33vw; padding-right: 3.33vw">仕事は出会いの雲煙者へ問い合わせがある場合は、この画面から送信してください。</p>
+            <p style="color: #383838; font-size: 3.73vw; line-height: 3.31vh; padding-left: 3.33vw; padding-right: 3.33vw">運営者から折り返しの返答がある場合は、登録いただいたメールアドレスまたは電話番号へ連絡させていただきます。</p>
+            <textarea type="text" style="width: 100%; height: 36vh; background-color: #f2f2f2; padding: 3.33vw 3.33vw; color: #383838; line-height: 3.31vh; border: none; margin-top: 4.18vh; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;">テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト</textarea>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 4.78vh;">問い合わせ</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="myPage.html">
+<ons-navigator id="appNavigator5">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">マイページ</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #fff; height: 25.99vh;padding: 0 7.18vw;">            
+            <p style="color: #383838; font-size: 3.73vw; line-height: 3.1vh; margin-top: 2.59vh;">全てのプロフィールが入力されていないと、応募を行うことができません。入力が済んでいない場合は、下の「プロフィールの確認/変更」ボタンを押して入力してください。</p>
+            <div style="width: 100%;">
+            <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 2.59vh;" onclick="fn.pushPage(5, {'id': 'info_edit.html', 'title': 'Info Edit'})">プロフィールの確認/変更</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #e2b943;">応募した仕事一覧（最新５件）</ons-list-title>
+        <ons-list style="background-color: #f8edd2; height: 49.82vh;">
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 8.88vh; padding: 0 7.18vw; margin-top: 1.2vh;">
+                <div style="position: relative; background-color: transparent; width: 100%; height: calc(100% + 12px); margin-top: -12px; border-bottom: 1px dotted #383838; ">
+                    <p style="color: #383838; font-size: 3.2vw; line-height: 3.2vh;">2017.01.01</p>
+                    <p style="color: #383838; font-size: 3.73vw; line-height: 3.2vh;">仕事のタイトル</p>
+                    <ons-button class="right-button" style="width: 23.03vw; height: 4.75vh; font-size: 3.2vw; color: #fff; background-color: #e64435; border-radius: 2.88vh; line-height: 4.75vh; text-align: center; padding: 0; ">評価をする</ons-button>
+                </div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 8.88vh; padding: 0 7.18vw; margin-top: -1.2vh;">
+                <div style="position: relative; background-color: transparent; width: 100%; height: calc(100% + 12px); margin-top: -12px; border-bottom: 1px dotted #383838; ">
+                    <p style="color: #383838; font-size: 3.2vw; line-height: 3.2vh;">2017.01.01</p>
+                    <p style="color: #383838; font-size: 3.73vw; line-height: 3.2vh;">仕事のタイトル</p>
+                    <ons-button class="right-button" style="width: 23.03vw; height: 4.75vh; font-size: 3.2vw; color: #fff; background-color: #e64435; border-radius: 2.88vh; line-height: 4.75vh; text-align: center; padding: 0;">評価をする</ons-button>
+                </div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 8.88vh; padding: 0 7.18vw; margin-top: -1.2vh;">
+                <div style="position: relative; background-color: transparent; width: 100%; height: calc(100% + 12px); margin-top: -12px; border-bottom: 1px dotted #383838; ">
+                    <p style="color: #383838; font-size: 3.2vw; line-height: 3.2vh;">2017.01.01</p>
+                    <p style="color: #383838; font-size: 3.73vw; line-height: 3.2vh;">仕事のタイトル</p>
+                    <ons-button class="right-button" style="width: 23.03vw; height: 4.75vh; font-size: 3.2vw; color: #fff; background-color: #e64435; border-radius: 2.88vh; line-height: 4.75vh; text-align: center; padding: 0;;">評価をする</ons-button>
+                </div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 8.88vh; padding: 0 7.18vw; margin-top: -1.2vh;">
+                <div style="position: relative; background-color: transparent; width: 100%; height: calc(100% + 12px); margin-top: -12px; border-bottom: 1px dotted #383838; ">
+                    <p style="color: #383838; font-size: 3.2vw; line-height: 3.2vh;">2017.01.01</p>
+                    <p style="color: #383838; font-size: 3.73vw; line-height: 3.2vh;">仕事のタイトル</p>
+                    <ons-button class="right-button" style="width: 23.03vw; height: 4.75vh; font-size: 3.2vw; color: #fff; background-color: #e64435; border-radius: 2.88vh; line-height: 4.75vh; text-align: center; padding: 0;">評価をする</ons-button>
+                </div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 8.88vhvh; padding: 0 7.18vw; margin-top: -1.2vh;">
+                <div style="position: relative; background-color: transparent; width: 100%; height: calc(100% + 12px); margin-top: -12px; border-bottom: 1px dotted #383838; ">
+                    <p style="color: #383838; font-size: 3.2vw; line-height: 3.2vh;">2017.01.01</p>
+                    <p style="color: #383838; font-size: 3.73vw; line-height: 3.2vh;">仕事のタイトル</p>
+                    <ons-button class="right-button" style="width: 23.03vw; height: 4.75vh; font-size: 3.2vw; color: #fff; background-color: #e64435; border-radius: 2.88vh; line-height: 4.75vh; text-align: center; padding: 0;">評価をする</ons-button>
+                </div>
+            </ons-list-item>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 1.39vh;" onclick="fn.pushPage(5, {'id': 'entry_show.html', 'title': 'Entry Show'})">応募した仕事一覧へ</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #667ab2;">企業からあなたへの評価一覧</ons-list-title>
+        <ons-list style="background-color: #e4e8f1; height: 61.34vh;">
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 17vh; padding: 0 7.17vw;">
+                <p style="color: #383838; font-size: 3.73vw; line-height: 2.88vh; margin-top: 2.88vh; border: none; border-bottom: 1px dotted #383838;">評価についてのコメント（任意）テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト</p>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" style="background-color: transparent; height: 17vh; padding: 0 7.17vw;">
+                <p style="color: #383838; font-size: 3.73vw; line-height: 2.88vh; margin-top: 2.88vh; border: none; border-bottom: 1px dotted #383838;">評価についてのコメント（任意）テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト</p>
+            </ons-list-item>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 2.88vh;">評価一覧へ</ons-button>
+                    <ons-button class="button message" style="margin-top: 2.88vh;"  onclick="fn.pushPage(5, {'id': 'ques_show.html', 'title': 'Question Show'})">お問合せはこちらから</ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <style>
+            ons-button.right-button.button {
+                position: absolute;
+                top: 0.77vh;
+                right: 0;
+            }
+            .sub_title {
+                height: 6.66vh;
+                color: #fff;
+                font-size: 4.27vw;
+                line-height: 4.97vh;
+                padding: 1.69vh 7.04vw 0 7.04vw;
+            }
+        </style>
+    </ons-page>
+</ons-navigator>
+</template>
+
+<template id="favorite_list.html">
+<ons-navigator id="appNavigator4">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">お気に入り一覧</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #fff; height: 6.48vh;">            
+            <p style="color: #e64435; font-size: 3.73vw; line-height: 4.68vh; margin-top: 1.8vh; text-align: center; ">応募期限が過ぎたお気に入りは自動削除されます</p>
+        </ons-list>
+        <ons-list-title style="height: 4.32vh; background-color: #e2b943; color: #fff; padding: 0 4.22vw;">
+            <div style="color: #fff; font-size: 2.67vw; line-height: 2.59vh; margin-top: 0.86vh; float: left;">株式会社◯◯◯◯◯</div>
+            <div style="color: #fff; font-size: 2.67vw; line-height: 2.59vh; margin-top: 0.86vh; float: right;">募集人数：20人</div>
+        </ons-list-title>
+        <ons-list style="background-color: #f8edd2; height: 62.63vh;padding:0 4.96vw;">            
+            <div style="position: relative; width: 100%; height: 28.8vh; margin-top: 2.88vh; ">
+                <div style="width: 22.71vw; height: 13.61vh; margin-left: 3.1vw; background-color: #383838;"></div>
+                <div style="position: absolute; left: 29.91vw; top: 0; width: 57.58vw; height: 28.8vh;">
+                    <div style="position: relative; width: 100%; height: 2.59vh; margin-top: 0.6vh;">
+                        <p style="width: 12.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">新着</p>
+                        <p style="width: 14.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">一般派遣</p>
+                        <p style="width: 12.8vw; height: 2.59vh; margin-right: 2.3vw; border-radius: 2px; background-color: #e64435; color: #fff; font-size: 2.4vw; line-height: 2.59vh; text-align: center; float: left;">月給</p>
+                    </div>
+                    <p style="margin-top: 0.8vh; color: #383838; font-size: 3.73vw; line-height: 3.46vh; font-weight: bold;">仕事のタイトルテストテキスト</p>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 4vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">職種</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">給与</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">勤務時間</p>
+                    </div>
+                    <div style="position: relative; width: 100%; height: 3.46vh; margin-top: 1.3vh; border-bottom: 1px dotted #383838;">
+                        <p style="color: #383838; font-size: 3.73vw; line-height: 3.46vh;">場所</p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%;">
+                <p style="text-align: center; margin-top: 15.12vh;">
+                    <ons-button class="button detail" onclick="fn.pushPage(4, {'id': 'entry_detail.html', 'title': 'Entry Detail'})">詳細を確認する</ons-button>
+                    <ons-button class="button detail">お気に入りに追加</ons-button>
+                </p>
+            </div>
+            <div style="width: 100%;">
+                <p style="text-align: center; margin-top: 2.16vh; font-size: 2.67vw; line-height: 2.88vh; color: #383838; ">応募期間　2017/10/01 〜 2018/01/01</p>
+            </div>
+        </ons-list>
+        <style>
+            ons-button.button.detail{
+                width: 39.92vw;
+                height: 6.48vh;
+                cursor: pointer;    
+            	background-color: #e64435;
+            	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+            	color: #fff;
+            	font-size: 3.73vw;	
+            	border: 1px solid #e64435;
+                line-height: 6.48vh;
+                text-align: center;
+                padding: 0;
+            	-webkit-border-radius: 3.06vh;
+            	   -moz-border-radius: 3.06vh;
+            	        border-radius: 3.06vh;
+            	-webkit-transition: all 0.2s linear;
+            	   -moz-transition: all 0.2s linear;
+            	     -o-transition: all 0.2s linear;
+            	        transition: all 0.2s linear;
+            }
+        </style>
+    </ons-page>
+</ons-navigator>
+</template>
+
+
+<template id="mail_list.html">
+<ons-navigator id="appNavigator3">
+  <ons-page ng-controller="InitMailsList" ons-show="ShowPage();">
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">メールボックス</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #e2b943;">受信メール一覧</ons-list-title>
+    <ons-list style="background-color: #f8edd2; height: 63.46vh; padding: 0 8.45vw; position: relative;">
+        <p style="text-align: center; margin-top: 3.06vh;">
+            <ons-card class="mail_item" style="color: #383838;font-size:12px" ng-repeat="item in mails_receive_list"
+                onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+                {{item.date}}<br>{{item.title}}
+            </ons-card>
+        </p>
+        <!--<ons-card class="mail_item" style="margin-top: 3.06vh;" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>-->
+        <div style="width: calc(100% - 16.9vw); position: absolute; top: 53.28vh;">
+            <p style="text-align: center">
+                <ons-button class="button message" onclick="fn.pushPage(3, {'id': 'receive_mail_list.html', 'title': 'Receive Mail List'})">受信メール一覧へ</ons-button>
+            </p>
+        </div>
+    </ons-list>
+    
+    <ons-list-title class="sub_title" style="background-color: #667ab2;">送信メール一覧</ons-list-title>
+    <ons-list style="background-color: #e4e8f1; height: 63.46vh; padding: 0 8.45vw; position: relative;">
+        <p style="text-align: center; margin-top: 3.06vh;">
+            <ons-card class="mail_item" style="color: #383838;font-size:12px" ng-repeat="item in mails_send_list" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+                <!--<div class="content" style="color: #383838;">{{item.date}}<br>{{item.title}}</div>-->
+                {{item.date}}<br>{{item.title}}
+            </ons-card>
+        </p>
+        <!--<ons-card  class="mail_item" style="margin-top: 3.06vh;" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>-->
+        <div style="width: calc(100% - 16.9vw); position: absolute; top: 53.28vh;">
+            <p style="text-align: center">
+                <ons-button class="button message" onclick="fn.pushPage(3, {'id': 'send_mail_list.html', 'title': 'Send Mail List'})">送信メール一覧へ</ons-button>
+            </p>
+        </div>
+    </ons-list>
+
+    <style>
+      .sub_title {
+        height: 6.66vh;
+        color: #fff;
+        font-size: 4.27vw;
+        line-height: 4.97vh;
+        padding: 1.69vh 7.04vw 0 7.04vw;
+      }
+        
+      ons-card.mail_item {
+        cursor: pointer;
+        color: #333;
+        height: 8.64vh;
+        margin: 0.9vh 0;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+      
+      .card__content,
+      .card--material__content {
+          font-size: 3.73vw;
+          margin: -2vh 0;
+      }
+    </style>
+  </ons-page>
+</ons-navigator>
+</template>
+
+<template id="receive_mail_list.html">
+  <ons-page ng-controller="ReceiveMailsList" >
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="left">
+        <ons-back-button></ons-back-button>
+      </div>
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">メールボックス</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #e2b943;">受信メール一覧</ons-list-title>
+    <ons-list style="background-color: #f8edd2; height: 63.46vh; padding: 0 8.45vw;">
+        <p style="text-align: center; margin-top: 3.06vh;">
+            <ons-card class="mail_item" style="color: #383838;font-size:12px" ng-repeat="item in mails_receive_list1" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+                <!--<div class="content" style="color: #383838;">{{item.date}}<br>{{item.title}}</div>-->
+                {{item.date}}<br>{{item.title}}
+            </ons-card>
+        </p>
+        <!--<ons-card class="mail_item" style="margin-top: 3.06vh;" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'receive_mail_detail.html', 'title': 'Receive Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>-->
+    </ons-list>
+    <style>
+        .back-button__icon {
+            fill: rgba(255, 255, 255, 1.0)
+        }
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+          }
+          
+      ons-card.mail_item {
+        cursor: pointer;
+        color: #333;
+        height: 8.64vh;
+        margin: 0.9vh 0;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+      
+      .card__content,
+      .card--material__content {
+          font-size: 3.73vw;
+          margin: -2vh 0;
+      }
+    </style>
+</ons-page>
+</template>
+
+<template id="send_mail_list.html">
+    <ons-page ng-controller="SendMailsList">
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="left">
+        <ons-back-button></ons-back-button>
+      </div>
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">メールボックス</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #667ab2;">送信メール一覧</ons-list-title>
+    <ons-list style="background-color: #e4e8f1; height: 63.46vh; padding: 0 8.45vw;">
+        <p style="text-align: center; margin-top: 3.06vh;">
+            <ons-card class="mail_item" style="color: #383838;font-size:12px" ng-repeat="item in mails_send_list1" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+                <!--<div class="content" style="color: #383838;">{{item.date}}<br>{{item.title}}</div>-->
+                {{item.date}}<br>{{item.title}}
+            </ons-card>
+        </p>
+        <!--<ons-card  class="mail_item" style="margin-top: 3.06vh;" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>
+        <ons-card class="mail_item" onclick="fn.pushPage(3, {'id': 'send_mail_detail.html', 'title': 'Send Mail Detail'})">
+          <div class="content" style="color: #383838;">2017.01.01<br>メールタイトルテストテキスト</div>
+        </ons-card>-->
+    </ons-list>
+    <style>
+        .back-button__icon {
+            fill: rgba(255, 255, 255, 1.0)
+        }
+        
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+          }
+          
+      ons-card.mail_item {
+        cursor: pointer;
+        color: #333;
+        height: 8.64vh;
+        margin: 0.9vh 0;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+      
+      .card__content,
+      .card--material__content {
+          font-size: 3.73vw;
+          margin: -2vh 0;
+      }
+    </style>
+  </ons-page>
+</template>
+
+<template id="receive_mail_detail.html">
+<ons-page ng-controller="ReceiveMailDetail">
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="left">
+        <ons-back-button></ons-back-button>
+      </div>
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">メールボックス</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #e2b943;">受信メール詳細</ons-list-title>
+    <ons-list style="background-color: #f8edd2; height: 33.69vh; padding: 0 4.61vw;">
+        <div style="width: 100%; height: 27.86vh; background-color: #f2f2f2; border-radius: 5px; margin-top: 2.91vh;">
+            <p style="padding: 1.44vh 3.84vw; height: 11.16vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;">送信者：{{mail_detail_info.company_name}}<br>{{mail_detail_info.title}}<br>{{mail_detail_info.date}}</p>
+            <div style="width: 95%; height: 1px; background-color: #383838; margin-left: 2.5%;"></div>
+            <p style="padding: 1.44vh 3.84vw; height: 16.7vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;">{{mail_detail_info.body}}</p>
+        </div>
+    </ons-list>
+    <ons-list-title class="sub_title" style="background-color: #5ea988;">このメールに返信する</ons-list-title>
+    <ons-list style="background-color: #e2b943; height: 35.21vh; padding: 0 7.68vw;">
+        <div  class="message area" style="margin-top: 3.24vh;">
+            <p class="message label">件名</p>
+            <ons-input id="mail_title" class="message input"></ons-input>
+        </div>
+        <div class="message area" style="height: 13.82vh; margin-top: 0.9vh;">
+            <p class="message label" style="line-height: 100%;">本文</p>
+            <textarea id="mail_body" style="position: absolute; width: 74.28vw; height: 13.82vh; top: 0; left: 10.36vw; font-size: 3.73vw; color: #000; border: none; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;"></textarea>
+        </div>
+        
+        <div style="width: 100%;">
+            <p style="text-align: center">
+                <ons-button class="button message" style="margin-top: 2.27vh;" ng-click="SendMail();">送信</ons-button>
+            </p>
+        </div>
+    </ons-list>
+    <ons-list-title class="sub_title" style="background-color: #5ea988;">タイムライン</ons-list-title>
+    <ons-list style="background-color: #e2b943; height: 30.45vh; padding: 0 2.30vw;">
+        <div style="width: 100%; height: 11.16vh; background-color:transparent; border:none; margin-top: 2.27vh;">
+            <div id="tri_arrow_right" style="float:right; margin-top: 7.92vh;"></div>
+            <div style="width: 76.77vw; height: 11.16vh; background-color: #f2f2f2; border-radius: 5px; float: right;">
+                <p style="padding: 0.64vh 2.56vw;">
+                    <span style="width: 100%; height: 5.76vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; ">メール本文テストテキストメール本文テストテキストメール本文テストテキスト</span>
+                    <span style="height: 2.88vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; margin-top: 0.5vh; float: right;">2017.12.12 12:34:56</span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%; height: 11.16vh; background-color:transparent; border:none; margin-top: 1.55vh;">
+            <div id="tri_arrow_left" style="float:left; margin-top: 7.92vh;"></div>
+            <div style="width: 76.77vw; height: 11.16vh; background-color: #f2f2f2; border-radius: 5px; float: left">
+                <p style="padding: 0.64vh 2.56vw;">
+                    <span style="width: 100%; height: 5.76vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; ">メール本文テストテキストメール本文テストテキストメール本文テストテキスト</span>
+                    <span style="height: 2.88vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; margin-top: 0.5vh; float: right;">2017.12.12 12:34:56</span>
+                </p>
+            </div>
+        </div>
+    </ons-list>
+    <script>
+        function sendMailFunc(){
+            var mail_title = document.getElementById("mail_title");
+            var mail_body = document.getElementById("mail_body");
+            var company_name = {{mail_detail_info.company_name}};
+            
+            console.log(mail_title);
+            SendMail(mail_title, mail_body, company_name);
+        }
+    </script>
+    <style>
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+          }
+          
+        div.message.area {
+            position: relative; 
+            width: 100%;
+            height: 4.78vh;
+        }
+        
+        p.message.label {
+            height: 100%;
+            line-height: 200%;
+            color: #f2f2f2;
+            font-size: 3.73vw;
+        }
+        
+        ons-input.message.input {
+            position: absolute;
+            width: 71.91vw;
+            height: 4.78vh;
+            left: 10.36vw;
+            padding: 0 1vw;
+            line-height 200%;
+            font-size: 3.73vw;
+            color: #000;
+            top: 0;
+            background-color: #fff;
+        }
+        
+        .back-button__icon {
+            fill: rgba(255, 255, 255, 1.0)
+        }
+        
+        #tri_arrow_left {
+          width: 0; 
+          height: 0; 
+          border-top: 1.62vh solid transparent;
+          
+          border-right:3.84vw solid #f2f2f2; 
+        }
+        
+        #tri_arrow_right {
+          width: 0; 
+          height: 0; 
+          border-top: 1.62vh solid transparent;
+          
+          border-left: 3.84vw solid #f2f2f2;
+        }
+    </style>
+</ons-page>
+</template>
+
+<template id="send_mail_detail.html">
+<ons-page ng-controller="SendMailDetail">
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="left">
+        <ons-back-button></ons-back-button>
+      </div>
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">メールボックス</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #e2b943;">送信メール詳細</ons-list-title>
+    <ons-list style="background-color: #f8edd2; height: 33.69vh; padding: 0 4.61vw;">
+        <div style="width: 100%; height: 27.86vh; background-color: #f2f2f2; border-radius: 5px; margin-top: 2.91vh;">
+            <p style="padding: 1.44vh 3.84vw; height: 11.16vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;">受信者：：{{mail_detail_info.company_name}}<br>{{mail_detail_info.title}}<br>{{mail_detail_info.date}}</p>
+            <div style="width: 95%; height: 1px; background-color: #383838; margin-left: 2.5%;"></div>
+            <p style="padding: 1.44vh 3.84vw; height: 16.7vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;">{{mail_detail_info.body}}</p>
+        </div>
+    </ons-list>
+    <ons-list-title class="sub_title" style="background-color: #5ea988;">タイムライン</ons-list-title>
+    <ons-list style="background-color: #e2b943; height: 30.45vh; padding: 0 2.30vw;">
+        <div style="width: 100%; height: 11.16vh; background-color:transparent; border:none; margin-top: 2.27vh;">
+            <div id="tri_arrow_right" style="float:right; margin-top: 7.92vh;"></div>
+            <div style="width: 76.77vw; height: 11.16vh; background-color: #f2f2f2; border-radius: 5px; float: right;">
+                <p style="padding: 0.64vh 2.56vw;">
+                    <span style="width: 100%; height: 5.76vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; ">メール本文テストテキストメール本文テストテキストメール本文テストテキスト</span>
+                    <span style="height: 2.88vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; margin-top: 0.5vh; float: right;">2017.12.12 12:34:56</span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%; height: 11.16vh; background-color:transparent; border:none; margin-top: 1.55vh;">
+            <div id="tri_arrow_left" style="float:left; margin-top: 7.92vh;"></div>
+            <div style="width: 76.77vw; height: 11.16vh; background-color: #f2f2f2; border-radius: 5px; float: left">
+                <p style="padding: 0.64vh 2.56vw;">
+                    <span style="width: 100%; height: 5.76vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; ">メール本文テストテキストメール本文テストテキストメール本文テストテキスト</span>
+                    <span style="height: 2.88vh; line-hieght: 100%; font-size: 3.73vw; color: #383838; margin-top: 0.5vh; float: right;">2017.12.12 12:34:56</span>
+                </p>
+            </div>
+        </div>
+    </ons-list>
+    <style>
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+          }
+        div.message.area {
+            position: relative; 
+            width: 100%;
+            height: 4.78vh;
+        }
+        
+        p.message.label {
+            height: 100%;
+            line-height: 200%;
+            color: #f2f2f2;
+            font-size: 3.73vw;
+        }
+        
+        ons-input.message.input {
+            position: absolute;
+            width: 71.91vw;
+            height: 4.78vh;
+            left: 10.36vw;
+            padding: 0 1vw;
+            line-height 200%;
+            font-size: 3.73vw;
+            color: #000;
+            top: 0;
+            background-color: #fff;
+        }
+        
+        .back-button__icon {
+            fill: rgba(255, 255, 255, 1.0)
+        }
+        
+        #tri_arrow_left {
+          width: 0; 
+          height: 0; 
+          border-top: 1.62vh solid transparent;
+          
+          border-right:3.84vw solid #f2f2f2; 
+        }
+        
+        #tri_arrow_right {
+          width: 0; 
+          height: 0; 
+          border-top: 1.62vh solid transparent;
+          
+          border-left: 3.84vw solid #f2f2f2;
+        }
+    </style>
+</ons-page>
+</template>
+<template id="info_edit.html">
+    <ons-page>
+        <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+          <div class="left">
+            <ons-back-button></ons-back-button>
+          </div>
+          <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">プロフィールの確認/変更</div>
+        </ons-toolbar>
+        <ons-list style="background-color: #e2b943; height: 68.39vh;padding: 0 7.68vw;">            
+            <div  class="info area" style="margin-top: 3.06vh;">
+                <p class="type info">名前</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">フリガナ</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">NAME</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">国籍</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">生年月日</p>
+                <ons-select class="select info" style="width: 21.22vw;">
+                    <option value="-1" disabled selected="">年</option>
+                    <option value="0">1980</option>
+                    <option value="1">1981</option>
+                    <option value="2">1982</option>
+                    <option value="3">1983</option>
+                    <option value="4">1984</option>
+                    <option value="5">1985</option>
+                    <option value="6">1986</option>
+                    <option value="7">1987</option>
+                    <option value="8">1988</option>
+                    <option value="9">1989</option>
+                    <option value="10">1990</option>
+                    <option value="11">1991</option>
+                    <option value="12">1992</option>
+                    <option value="13">1993</option>
+                    <option value="14">1994</option>
+                    <option value="15">1995</option>
+                    <option value="16">1996</option>
+                    <option value="17">1997</option>
+                    <option value="18">1998</option>
+                    <option value="19">1999</option>
+                    <option value="20">2000</option>
+                    <option value="21">2001</option>
+                    <option value="22">2002</option>
+                    <option value="23">2003</option>
+                    <option value="24">2004</option>
+                    <option value="25">2005</option>
+                    <option value="26">2006</option>
+                    <option value="27">2007</option>
+                    <option value="28">2008</option>
+                    <option value="29">2009</option>
+                    <option value="30">2010</option>
+                    <option value="31">2011</option>
+                    <option value="32">2012</option>
+                    <option value="33">2013</option>
+                    <option value="34">2014</option>
+                    <option value="35">2015</option>
+                    <option value="36">2016</option>
+                    <option value="37">2017</option>
+                    <option value="38">2018</option>
+                </ons-select>
+                <ons-select class="select info" style="width: 21.22vw; left: 40.04vw;">
+                    <option value="-1" disabled selected="">月</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </ons-select>
+                <ons-select class="select info" style="width: 21.22vw; left: 62.42vw;">
+                    <option value="-1" disabled selected="">日</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </ons-select>
+            </div>
+            <div class="info area">
+                <p class="type info">性別</p>
+                <ons-button id="sex_m" class="option_button sex_m" style="background-color: #e64435; color: #fff;" onclick="changeOption(1, 'sex_m');">男</ons-button>
+                <ons-button id="sex_w" class="option_button sex_w" style="left: 50.65vw;" onclick="changeOption(1, 'sex_w');">女</ons-button>
+            </div>
+            <div class="info area">
+                <p class="type info">配偶者</p>
+                <ons-button id="spouse_y" class="option_button spouse_y" style="background-color: #e64435; color: #fff;" onclick="changeOption(2, 'spouse_y');">有</ons-button>
+                <ons-button id="spouse_n" class="option_button spouse_n" style="left: 50.65vw;" onclick="changeOption(2, 'spouse_n');">無</ons-button>
+            </div>
+            <div class="info area">
+                <p class="type info">郵便番号</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">住所</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">電話番号</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info" style="line-height: 100%;">メール<br>アドレス</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+        </ons-list>
+        <ons-list style="background-color: #5ea988; height: 25.05vh;padding: 0 7.68vw;"> 
+            <div  class="info area" style="margin-top: 1.73vh;">
+                <p class="type info">緊急連絡先</p>
+            </div>
+            <div class="info area" style="margin-top: 0.54vh;">
+                <p class="type info">名前</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">続柄</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info">電話番号</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+        </ons-list>
+        <ons-list style="background-color: #f8edd2; height: 95.36vh; padding: 0 7.68vw;"> 
+            <div  class="info area" style="margin-top: 2.88vh;">
+                <p class="type info color">最終学歴</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area" style="height: 10.44vh;">
+                <p class="type info color">職業履歴</p>
+                <textarea style="position: absolute; width: 65.98vw; height: 10.44vh; top: 0; left: 17.66vw; font-size: 3.73vw; color: #000; border: none; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; background-color: #f2f2f2; padding: 0 1vw;"></textarea>
+            </div>
+            <div class="info area">
+                <p class="type info color">希望職種</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color" style="line-height: 100%;">マイナンバー<br>番号</p>
+                <ons-input class="input info" style="width: 61.29vw; left: 20.35vw;"></ons-input>
+            </div>
+            <div  class="info area">
+                <p class="type info color">運転免許</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color">その他資格</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color">服サイズ</p>
+                <!--<ons-input class="input info"></ons-input>-->
+                <ons-select class="select info" style="width: 44.02vw;">
+                    <option value="-1" disabled selected="">S M L LL</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="LL">LL</option>
+                </ons-select>
+            </div>
+            <div class="info area">
+                <p class="type info color">日本語能力</p>
+                <!--<ons-input class="input info"></ons-input>-->
+                <ons-select class="select info" style="width: 44.02vw;">
+                    <option value="-1" disabled selected="">優・良・可・不可</option>
+                    <option value="0">優</option>
+                    <option value="1">良</option>
+                    <option value="2">可</option>
+                    <option value="3">不可</option>
+                </ons-select>
+            </div>
+            <div  class="info area">
+                <p class="type info color">身長(cm)</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div  class="info area">
+                <p class="type info color">体重(kg)</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color" style="line-height: 100%;">靴のサイズ<br>(cm)</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color">視力</p>
+                <ons-input class="input info"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color" style="line-height: 100%;">パスポートNo. <br>（日本国籍以外）</p>
+                <ons-input class="input info" style="width: 54.13vw; left: 27.51vw;"></ons-input>
+            </div>
+            <div  class="info area">
+                <p class="type info color" style="line-height: 100%;">外国人登録証<br>（在留カード番号）</p>
+                <ons-input class="input info" style="width: 54.13vw; left: 27.51vw;"></ons-input>
+            </div>
+            <div class="info area">
+                <p class="type info color">在留資格</p>
+                <!--<ons-input class="input info"></ons-input>-->
+                <ons-select class="select info">
+                    <option value="-1" disabled selected="">留学生・家族滞在・永住者</option>
+                    <option value="0">留学生</option>
+                    <option value="1">家族滞在</option>
+                    <option value="2">永住者</option>
+                </ons-select>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #667ab2;">履歴書用顔写真</ons-list-title>
+        <ons-list style="background-color: #e4e8f1; height: 33.69vh;padding: 0 7.68vw;"> 
+            <p class="type info color" style="height: 3.24vh; line-height: 3.24vh; margin-top: 1.43vh;">ボタンを押して、顔写真を撮影してください。</p>
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 1.55vh;" onclick="snapPicture('main');">履歴書用顔写真の撮影</ons-button>
+                </p>
+            </div> 
+            <div style="width: 100%;">
+                <p style="height: 3.24vh; margin-top: 1.66vh; line-height: 3.24vh; text-align: center; font-size: 2.67vw; color: #383838;">現在の写真</p>
+                <p style="text-align: center; margin-top: 0;">
+                    <ons-button modifier="quiet" onclick="selectPicture('main');"><img id="avatar_main" src="resource/default_img.png" alt="" style ="width: 23.03vw; height: 13.32vh;"/></ons-button>
+                </p>
+            </div>
+        </ons-list>
+        <ons-list-title class="sub_title" style="background-color: #667ab2;">在留カードの撮影</ons-list-title>
+        <ons-list style="background-color: #e4e8f1; height: 36.86vh;padding: 0 3.84vw;"> 
+            <p class="type info color" style="height: 6.12vh; line-height: 3.06vh; margin-top: 1.37vh; margin-left: 3.84vw;">ボタンを押して、在留カードの表裏を<br>撮影してください。</p>
+            <div style="width: 50%; float: left;">
+                <div style="width: 100%;">
+                    <p style="text-align: center">
+                        <ons-button class="button message" style="margin-top: 2.59vh; width: 40.31vw; height: 6.3vh; line-height: 2.66vh; padding-top: 0.49vh;" onclick="snapPicture('out');">在留カード（表）<br>の撮影</ons-button>
+                    </p>
+                    <p style="height: 3.24vh; margin-top: 1.44vh; line-height: 3.24vh; text-align: center; font-size: 2.67vw; color: #383838;">現在の写真</p>
+                    <p style="text-align: center; margin-top: 0;">
+                        <ons-button modifier="quiet" onclick="selectPicture('out');"><img id="avatar_out" src="resource/default_img.png" alt="" style ="width: 23.03vw; height: 13.32vh;"/></ons-button>
+                    </p>
+                </div>
+            </div> 
+            <div style="width: 50%; float: right;">
+                <div style="width: 100%;">
+                    <p style="text-align: center">
+                        <ons-button class="button message" style="margin-top: 2.59vh; width: 40.31vw; height: 6.3vh; line-height: 2.66vh; padding-top: 0.49vh;" onclick="snapPicture('in');">在留カード（裏）<br>の撮影</ons-button>
+                    </p>
+                    <p style="height: 3.24vh; margin-top: 1.44vh; line-height: 3.24vh; text-align: center; font-size: 2.67vw; color: #383838;">現在の写真</p>
+                    <p style="text-align: center; margin-top: 0;">
+                        <ons-button modifier="quiet" onclick="selectPicture('in');"><img id="avatar_in" src="resource/default_img.png" alt="" style ="width: 23.03vw; height: 13.32vh; background-color:red;"/></ons-button>
+                    </p>
+                </div>
+            </div> 
+        </ons-list>
+        <ons-list style="background-color: #e2b943; height: 13.39vh; padding:0;">
+            <div style="width: 100%;">
+                <p style="text-align: center">
+                    <ons-button class="button message" style="margin-top: 3.06vh;">プロフィールの更新</ons-button>
+                </p>
+            </div> 
+        </ons-list>
+          <script src="js/avatar_edit.js"></script>
+          <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <script type="text/javascript" src="js/cropper.min.js"></script>
+        <script>
+            document.addEventListener ("deviceready", onDeviceReady, false);
+        
+            //these functions runs when Cordova is ready
+            function onDeviceReady () {
+                //alert ('Cordova is ready!');
+            }
+    
+    //         function snapPicture (type) {
+    //             navigator.camera.getPicture (successCallback, FailCallback, {destinationType: Camera.DestinationType.DATA_URL, allowEdit: true, saveToPhotoAlbum: true, cameraDirection: 1});
+    // 
+    //             //Success Callback
+    //             function successCallback (imageData) {
+    //                 var image_main = document.getElementById ('avatar_main');
+    //                 var image_out = document.getElementById ('avatar_out');
+    //                 var image_in = document.getElementById ('avatar_in');
+    //                 switch (type) {
+    //                     case 0:
+    //                         image_main.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                     case 1: 
+    //                         image_out.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                     case 2: 
+    //                         image_in.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                 }
+    //             }
+    // 
+    //             //Error CallBack
+    //             function FailCallback (message) {
+    //                 //alert ('Error!!!: ' + message);
+    //             }
+    //         }
+    //         
+    //         function selectPicture (type) {
+    //             navigator.camera.getPicture (successCallback, FailCallback, {destinationType: Camera.DestinationType.DATA_URL, sourceType:Camera.PictureSourceType.PHOTOLIBRARY, allowEdit: true});
+    // 
+    //             //Success Callback
+    //             function successCallback (imageData) {
+    //                 var image_main = document.getElementById ('avatar_main');
+    //                 var image_out = document.getElementById ('avatar_out');
+    //                 var image_in = document.getElementById ('avatar_in');
+    //                 switch (type) {
+    //                     case 0:
+    //                         image_main.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                     case 1: 
+    //                         image_out.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                     case 2: 
+    //                         image_in.src = "data:image/jpeg;base64, " + imageData;
+    //                         break;
+    //                 }
+    //             }
+    // 
+    //             //Error CallBack
+    //             function FailCallback (message) {
+    //                 //alert ('Error!!!: ' + message);
+    //             }
+    //         }
+            function changeOption(type, cl_name){
+                var sex_m = document.getElementById("sex_m");
+                var sex_w = document.getElementById("sex_w");
+                var spouse_y = document.getElementById("spouse_y");
+                var spouse_n = document.getElementById("spouse_n");
+
+                switch (type) {
+                    case 1:
+                        if (cl_name == "sex_m") {
+                            sex_m.style.backgroundColor = "#e64435";
+                            sex_m.style.color = "#fff";
+                            sex_w.style.backgroundColor = "#f2f2f2";
+                            sex_w.style.color = "#383838";
+                        } else {
+                            sex_w.style.backgroundColor = "#e64435";
+                            sex_w.style.color = "#fff";
+                            sex_m.style.backgroundColor = "#f2f2f2";
+                            sex_m.style.color = "#383838";
+                        }
+                        break;
+                    case 2:
+                        if (cl_name == "spouse_y") {
+                            spouse_y.style.backgroundColor = "#e64435";
+                            spouse_y.style.color = "#fff";
+                            spouse_n.style.backgroundColor = "#f2f2f2";
+                            spouse_n.style.color = "#383838";
+                        } else {
+                            spouse_n.style.backgroundColor = "#e64435";
+                            spouse_n.style.color = "#fff";
+                            spouse_y.style.backgroundColor = "#f2f2f2";
+                            spouse_y.style.color = "#383838";
+                        }
+                        break;
+                }
+            }
+        </script>
+        <style>
+            .sub_title {
+                height: 6.66vh;
+                color: #fff;
+                font-size: 4.27vw;
+                line-height: 4.97vh;
+                padding: 1.69vh 7.04vw 0 7.04vw;
+            }
+            
+            ons-button.button.detail{
+                width: 39.92vw;
+                height: 6.48vh;
+                cursor: pointer;    
+                background-color: #e64435;
+            	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+            	color: #fff;
+            	font-size: 3.73vw;	
+            	border: 1px solid #e64435;
+                line-height: 6.48vh;
+                text-align: center;
+                padding: 0;
+            	-webkit-border-radius: 3.06vh;
+            	   -moz-border-radius: 3.06vh;
+            	        border-radius: 3.06vh;
+            	-webkit-transition: all 0.2s linear;
+            	   -moz-transition: all 0.2s linear;
+            	     -o-transition: all 0.2s linear;
+            	        transition: all 0.2s linear;
+            }
+            
+            div.info.area {
+                position: relative; 
+                width: 100%;
+                height: 4.78vh;
+                margin-top: 0.9vh;
+            }
+            
+            p.type.info {
+                height: 100%;
+                line-height: 4.78vh;
+                color: #f2f2f2;
+                font-size: 3.73vw;
+            }
+            
+            p.type.info.color {
+                color: #383838;
+            }
+            
+            ons-button.option_button {
+                position: absolute;
+                width: 32.99vw;
+                height: 4.78vh;
+                left: 17.66vw;
+                padding: 0;
+                line-height 4.78vh;
+                font-size: 3.73vw;
+                color: #383838;
+                top: 0;
+                background-color: #f2f2f2;
+                border: none;
+                text-align: center;
+                border-radius: 0;
+            }
+            
+            ons-input.input.info {
+                position: absolute;
+                width: 63.98vw;
+                height: 4.78vh;
+                left: 17.66vw;
+                padding: 0 1vw;
+                line-height 4.78vh;
+                font-size: 3.73vw;
+                color: #383838;
+                top: 0;
+                background-color: #f2f2f2;
+            }
+            
+            ons-input.input.info .text-input {
+                height: 4.78vh;
+                line-height: 4.78vh;
+                color: #383838;
+                background-color: #f2f2f2;
+                font-size: 3.73vw;
+                text-align: center;
+            }
+            
+            ons-select.select.info {
+                position: absolute;
+                width: 65.98vw;
+                height: 4.78vh;
+                left: 17.66vw;
+                top: 0;
+                background-color: #f2f2f2;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            
+            ons-select.select.info .select-input {
+                width: 100%;
+                padding: 0 1vw;
+                height: 4.78vh;
+                font-size: 3.73vw;
+                color: #333333;
+                line-height: 4.78vh;
+                background-color: #f2f2f2;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+            
+            .select.info::after {
+                height: 4.78vh;
+                content: '\25BC';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                padding: 0 2.68vw;
+                background: #e64435;
+                pointer-events: none;
+                color: #fff;
+                font-size: xx-small;
+            }
+            
+            .back-button__icon {
+                fill: rgba(255, 255, 255, 1.0)
+            }
+        </style>
+    </ons-page>
+</template>
+
+<template id="notice_list.html">
+    <ons-page>
+    <ons-toolbar class="sub_toolbar" style="background-image: url('./resource/title_background.png');background-size: cover;background-position: center;background-repeat: no-repeat; width: 100%; height: 8.1vh;">
+      <div class="left">
+        <ons-back-button></ons-back-button>
+      </div>
+      <div class="center" style="height: 8.1vh; line-height: 8.1vh; font-size: 5.33vw; color: #fff;">お知らせ一覧</div>
+    </ons-toolbar>
+    <ons-list-title class="sub_title" style="background-color: #e2b943;">お知らせ一覧</ons-list-title>
+    <ons-list style="background-color: #f8edd2; height: 67.17vh; padding: 0 3.84vw;">
+        <ons-card class="notice_item" style="margin-top: 2.81vh;" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+        <ons-card class="notice_item" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+        <ons-card class="notice_item" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+        <ons-card class="notice_item" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+        <ons-card class="notice_item" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+        <ons-card class="notice_item" onclick="">
+          <div class="content" style="color: #383838;">2017.01.01<br>お知らせテストテキストお知らせテストテキスト</div>
+        </ons-card>
+    </ons-list>
+    <style>
+        .back-button__icon {
+            fill: rgba(255, 255, 255, 1.0)
+        }
+        
+        .sub_title {
+            height: 6.66vh;
+            color: #fff;
+            font-size: 4.27vw;
+            line-height: 4.97vh;
+            padding: 1.69vh 7.04vw 0 7.04vw;
+          }
+          
+      ons-card.notice_item {
+        cursor: pointer;
+        color: #333;
+        height: 8.64vh;
+        margin: 1.08vh 0;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+      
+      .card__content,
+      .card--material__content {
+          font-size: 3.73vw;
+          margin: -2vh 0;
+      }
+    </style>
+  </ons-page>
+</template>
+
+
+</body>
+</html>

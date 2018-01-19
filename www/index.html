@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+    <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
+    <script src="components/loader.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/apis.js"></script>
+    <script src="js/index.js"></script>  
+</head>
+<body>
+<div class="container">
+        <section>
+            <div id="container_demo" >
+                <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                <a class="hiddenanchor" id="tologin"></a>
+                <a class="hiddenanchor" id="toregister"></a>
+                <a class="hiddenanchor" id="toregistercomplete"></a>
+                <!--<a class="hiddenanchor" id="toregistercomplete"></a>-->
+                <div id="wrapper">
+                    <div id="register" class="animate form">
+                        <form  action="#toregistercomplete" autocomplete="on"> 
+                            <img class="logo" src="./resource/logo.png">
+                            <h1 class="register title">新規登録フォーム</h1>
+                            <p class="input area"> 
+                                 <input id="usernamesignup" name="usernamesignup" type="text" required="required" type="text" placeholder="氏名" />
+                            </p>
+                            <p class="input area"> 
+                                <input id="passwordsignup" name="passwordsignup" type="password" required="required" type="password" placeholder="パスワード (数字6桁以上)"/>
+                            </p>
+                            <p class="input area">
+                                <input id="phonenumbersignup" name="phonenumbersignup" type="phonenumber" required="required" type="phonenumber" placeholder="電話番号"/>
+                            </p>
+                            <div class="select">
+                                <select id="langsignup" name="State">
+                                    <option value="-1" disabled selected="">言語（Language）</option>
+                                    <option value="J">日本語</option>
+                                    <option value="E">英語</option>
+                                    <option value=C"">中国語（繁体字）</option>
+                                    <option value="B">ベトナム語</option>
+                                    <option value="H">ネパール語</option>
+                                </select>
+                            </div>
+                            <p class="signin button">
+								<input type="button" value="新規登録" onclick="createUser()"/>
+							</p>
+                            <p class="change_link login">
+                                <a id="to_login" href="#tologin">端末データ移行はこちら</a>
+								<!--<input type="button" value="端末データ移行はこちら" id="to_login" /> -->
+							</p>
+                        </form>
+                    </div>
+                    
+                    <div id="login" class="animate form">
+                        <form  action="home.html" autocomplete="on"> 
+                            <img class="logo" src="./resource/logo.png">
+                            <h1 class="login title">端末データ移行</h1>
+                            <p class="input area"> 
+                                <input id="password" name="password" required="required" type="password" placeholder="パスワード (数字6桁以上)" />
+                            </p>
+                            <p class="input area">
+                                <input id="phonenumber" name="phonenumber" required="required" type="phonenumber" placeholder="電話番号"/>
+                            </p>
+                            <p class="login button"> 
+                                <input type="button" value="末端のデータ移行" onclick="switchUser()"/> 
+        					</p>
+                            <p class="change_link signin">
+                                <a id="to_register" href="#toregister">戻る</a>
+                                <!--<input type="button" value="JoinUs" id="to_register" /> -->
+							</p>
+                        </form>
+                    </div>
+                    <div id="registercomplete" class="animate form">
+                        <div class="main title area">
+                            <img src="resource/main_icon.png" alt="" />
+                            <h1 class="main title">仕事は出会い</h1>
+                        </div>    
+                        <h1 class="registercomplete title">新規登録完了</h1>
+                        <h1 class="registercomplete content">登録が完了しました</h1>
+                        <p class="change_link home">
+                            <a id="to_home" href="home.html">始める</a>
+						</p>
+                    </div>
+                </div>
+            </div>  
+        </section>
+    </div>
+</body>
+</html>

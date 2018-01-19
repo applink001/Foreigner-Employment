@@ -1,0 +1,566 @@
+/* This is a CSS file */
+/* remove codrops styles and reset the whole thing */
+#container_demo{
+     text-align: left;
+	 margin: 0;
+	 padding: 0;
+	 margin: 0 auto;
+	 font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;
+}
+
+/** fonts used for the icons **/ 
+@font-face {
+    font-family: 'FontomasCustomRegular';
+    src: url('fonts/fontomas-webfont.eot');
+    src: url('fonts/fontomas-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/fontomas-webfont.woff') format('woff'),
+         url('fonts/fontomas-webfont.ttf') format('truetype'),
+         url('fonts/fontomas-webfont.svg#FontomasCustomRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'FranchiseRegular';
+    src: url('fonts/franchise-bold-webfont.eot');
+    src: url('fonts/franchise-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/franchise-bold-webfont.woff') format('woff'),
+         url('fonts/franchise-bold-webfont.ttf') format('truetype'),
+         url('fonts/franchise-bold-webfont.svg#FranchiseRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+a.hiddenanchor{
+	display: none;
+}
+/** The wrapper that will contain our two forms **/
+#wrapper{
+    width: 100%;
+	right: 0px;
+	margin: 0px auto;
+	position: relative;
+}
+/**** Styling the form elements **/
+
+/**** general text styling ****/
+#wrapper a{
+	color: rgb(95, 155, 198);
+	text-decoration: underline;
+}
+
+#wrapper h1{
+	/*color: rgb(6, 106, 117);*/
+	font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
+	font-weight: bold;
+	text-align: center;
+}
+/** For the moment only webkit supports the background-clip:text; */
+/*
+#wrapper h1{
+    background: -webkit-repeating-linear-gradient(-45deg, 
+	rgb(18, 83, 93) , 
+	rgb(18, 83, 93) 20px, 
+	rgb(64, 111, 118) 20px, 
+	rgb(64, 111, 118) 40px, 
+	rgb(18, 83, 93) 40px);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+*/
+
+#wrapper img.logo {
+    position: absolute;
+    width: 63.98vw;
+    top: 14.83vh;
+    left: 16vw;
+}
+
+#wrapper div.title {
+    position: absolute;
+    display: inline-flex;
+    top: 14.83vh;
+    color: #000;
+    left: 14.45vw;
+}
+
+#wrapper div.title img {
+    width: 16.89vw;
+    height: 8.39vh;
+}
+
+
+#wrapper h1.title, #wrapper h1.content{
+    font-size: 3.73vw;
+    color: #333333;
+}
+
+#wrapper h1.title{
+    margin-top: 29.95vh;
+}
+
+#wrapper h1.main.title {
+    /*margin-bottom: 7.2vh;*/
+    width: 47.67vw;
+    font-size: 7.5vw;
+    height: 8.39vh;
+    line-height: 8.39vh;
+    margin-top: 0px;
+    text-align: center;
+}
+
+/*
+#wrapper h1:after{
+	content: ' ';
+	display: block;
+	width: 100%;
+	height: 2px;
+	margin-top: 10px;
+	background: -moz-linear-gradient(left, rgba(147,184,189,0) 0%, rgba(147,184,189,0.8) 20%, rgba(147,184,189,1) 53%, rgba(147,184,189,0.8) 79%, rgba(147,184,189,0) 100%); 
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(147,184,189,0)), color-stop(20%,rgba(147,184,189,0.8)), color-stop(53%,rgba(147,184,189,1)), color-stop(79%,rgba(147,184,189,0.8)), color-stop(100%,rgba(147,184,189,0))); 
+	background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -o-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: -ms-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+	background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+}
+*/
+
+#wrapper p{
+	margin-bottom:0.72vh;
+    text-align: center;
+}
+
+p.input.area {
+    margin-top: 0;
+}
+
+#wrapper p:first-child{
+	margin: 0px;
+}
+#wrapper label{
+	color: rgb(64, 92, 96);
+	position: relative;
+}
+
+/**** advanced input styling ****/
+/* placeholder */
+::-webkit-input-placeholder  { 
+	color: rgb(190, 188, 188); 
+	/*font-style: italic;*/
+    font-size: 3.73vw;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+	color: rgb(190, 188, 188);
+	font-style: italic;
+} 
+input {
+  outline: none;
+}
+/*rgb(172, 172, 172)*/
+
+/* all the input except submit and checkbox */
+#wrapper input:not([type="checkbox"]){
+    width: 63.98vw;
+	height: 4.68vh;
+    padding: 10px 5px 10px 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    color: #333;
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: border-box;
+	  -moz-box-sizing : border-box;
+	       box-sizing : border-box;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+    -webkit-box-shadow:none;
+	   -moz-box-shadow: none;
+	        box-shadow: none;
+	/*-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;*/
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+
+/*
+#wrapper input:not([type="checkbox"]):active,
+#wrapper input:not([type="checkbox"]):focus{
+	border: 1px solid rgba(91, 90, 90, 0.7);
+	background: rgba(238, 236, 240, 0.2);	
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	   -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+	        box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+} 
+*/
+
+/*styling both submit buttons */
+#wrapper p.button input{
+	width: 52.21vw;
+    height: 6.12vh;
+	cursor: pointer;	
+	background: #e64435;
+	padding: 8px 5px;
+	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+	color: #fff;
+	font-size: 3.73vw;	
+	border: 1px solid #e64435;	
+	/*margin-bottom: 10px;*/	
+	/*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);*/
+	-webkit-border-radius: 3.06vh;
+	   -moz-border-radius: 3.06vh;
+	        border-radius: 3.06vh;
+    -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+            /*
+	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+	   -moz-box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+	        box-shadow:0px 1px 6px 4px rgba(0, 0, 0, 0.07) inset,
+	        0px 0px 0px 3px rgb(254, 254, 254),
+	        0px 5px 3px 3px rgb(210, 210, 210);
+            */
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+}
+#wrapper p.button input:hover{
+	background: #e64435;
+}
+#wrapper p.button input:active,
+#wrapper p.button input:focus{
+	background: #e64435;
+	position: relative;
+	top: 1px;
+	border: 1px solid #e64435;	
+    /*
+	-webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	   -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+	        box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+            */
+}
+p.login.button,
+p.signin.button{
+    margin-top: 3.06vh;
+}
+
+p.change_link {
+    margin-top: 8.1vh;
+}
+
+
+/* styling the checkbox "keep me logged in"*/
+.keeplogin{
+	margin-top: -5px;
+}
+.keeplogin input,
+.keeplogin label{
+	display: inline-block;
+	font-size: 12px;	
+	font-style: italic;
+}
+.keeplogin input#loginkeeping{
+	margin-right: 5px;
+}
+.keeplogin label{
+	width: 80%;
+}
+
+
+/*styling the links to change from one form to another */
+
+#wrapper p.change_link a {
+    width: 40.31vw;
+    height: 4.68vh;
+    text-align: center;
+    line-height: 4.68vh;
+    position: relative;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+	font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: default;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /*padding: 5px 0;*/
+    text-shadow: 0 1px none;
+    vertical-align: middle;
+    background-color: #667ab2;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    -webkit-border-radius: 2.34vh;
+	   -moz-border-radius: 2.34vh;
+	        border-radius: 2.34vh;
+	-webkit-transition: all 0.2s linear;
+	   -moz-transition: all 0.2s linear;
+	     -o-transition: all 0.2s linear;
+	        transition: all 0.2s linear;
+	color: #f2f2f2;
+	font-size: 2.93vw;	
+	border: 1px solid #667ab2;
+    text-decoration: none;
+    -webkit-box-shadow: inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         inset 0px -1px 0px 0px rgba(50, 50, 50, 0.75);
+}
+#wrapper p.change_link a:active {
+    background-color: #667ab2;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    color: #f2f2f2;
+    -webkit-transition: none;
+       -moz-transition: none;
+         -o-transition: none;
+            transition: none;
+    opacity: 0.6;
+    -webkit-transition: none;
+       -moz-transition: none;
+         -o-transition: none;
+            transition: none;
+}
+#wrapper p.change_link a:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+#wrapper p.change_link a:hover {
+    -webkit-transition: none;
+       -moz-transition: none;
+         -o-transition: none;
+            transition: none;
+}
+#wrapper p.change_link a:focus {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    outline: 0;
+}
+/** Styling both forms **/
+#register, 
+#login,
+#registercomplete{
+	position: absolute;
+	top: 0px;
+	width: 88%;	
+	padding: 0 6%;
+	/*margin: 0 0 35px 0;*/
+    /*
+	background: rgb(247, 247, 247);
+	border: 1px solid rgba(147, 184, 189,0.8);
+	-webkit-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+	   -moz-box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+	        box-shadow: 0pt 2px 5px rgba(105, 108, 109,  0.7),	0px 0px 8px 5px rgba(208, 223, 226, 0.4) inset;
+	-webkit-box-shadow: 5px;
+	-moz-border-radius: 5px;
+		 border-radius: 5px;
+    */
+}
+#registercomplete {
+    z-index: 20;
+    opacity: 0;
+}
+#login{	
+	z-index: 21;
+	opacity: 0;
+}
+#register{
+	z-index: 22;
+}
+#tologin:target ~ #wrapper #login,
+#toregister:target ~ #wrapper #register,
+#toregistercomplete:target ~ #wrapper #registercomplete{
+	z-index: 22;
+	-webkit-animation-name: fadeInLeft;
+	-moz-animation-name: fadeInLeft;
+	-ms-animation-name: fadeInLeft;
+	-o-animation-name: fadeInLeft;
+	animation-name: fadeInLeft;
+	-webkit-animation-delay: .1s;
+	-moz-animation-delay: .1s;
+	-o-animation-delay: .1s;
+	-ms-animation-delay: .1s;
+	animation-delay: .1s;
+}
+
+#tologin:target ~ #wrapper #register,
+#toregister:target ~ #wrapper #login,
+#tologin:target ~ #wrapper #registercomplete,
+#toregistercomplete:target ~ #wrapper #login,
+#toregister:target ~ #wrapper #registercomplete,
+#toregistercomplete:target ~ #wrapper #register{
+	-webkit-animation-name: fadeOutLeft;
+	-moz-animation-name: fadeOutLeft;
+	-ms-animation-name: fadeOutLeft;
+	-o-animation-name: fadeOutLeft;
+	animation-name: fadeOutLeft;
+}
+
+
+/** the actual animation, credit where due : http://daneden.me/animate/ ***/
+.animate{
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-fill-mode: both;
+	
+	-moz-animation-duration: 0.5s;
+	-moz-animation-timing-function: ease;
+	-moz-animation-fill-mode: both;
+	
+	-o-animation-duration: 0.5s;
+	-o-animation-timing-function: ease;
+	-o-animation-fill-mode: both;
+	
+	-ms-animation-duration: 0.5s;
+	-ms-animation-timing-function: ease;
+	-ms-animation-fill-mode: both;
+	
+	animation-duration: 0.5s;
+	animation-timing-function: ease;
+	animation-fill-mode: both;
+}
+
+/** yerk some ugly IE fixes 'cause I know someone will ask "why does it look ugly in IE?", no matter how many warnings I will put in the article */
+
+.lt8 #wrapper input{
+	padding: 10px 5px 10px 32px;
+    width: 92%;
+}
+.lt8 #wrapper input[type=checkbox]{
+	width: 10px;
+	padding: 0;
+}
+.lt8 #wrapper h1{
+	color: #066A75;
+}
+.lt8 #register{	
+	display: none;
+}
+.lt8 p.change_link,
+.ie9 p.change_link{
+	position: absolute;
+	height: 90px;
+	background: transparent;
+}
+/*
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #f2f2f2;
+	background-image: none;
+}
+*/
+/* Custom Select */
+
+.select {
+    width: 63.98vw;
+	margin: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing : border-box;
+	box-sizing : border-box;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	-moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+	position: relative;
+	display: block;
+    height: 4.68vh;
+	line-height: 4.68vh;
+	background: #f2f2f2;
+    color: #333;
+	overflow: hidden;
+}
+select {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	/*padding: 0 0 0 .5em;*/
+	color: #333;
+	cursor: pointer;
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+}
+select::-ms-expand {
+	display: none;
+}
+.select::after {
+    height: 4.68vh;
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0 2.68vw;
+	background: #e64435;
+	pointer-events: none;
+    color: #fff;
+    font-size: xx-small;
+}
+.select::after {
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+}
+
+/*
+.select div {
+    display: inline-block;
+}
+.curVal {
+    height: 30px;
+    width: 150px;
+    line-height: 30px;
+    vertical-align: middle;
+    background-color: rgb(0, 162, 232);
+    color: white;
+}
+.arrow {
+    color: white;
+    background-color: rgb(0, 140, 200);
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    position: absolute;
+    top: 0px;
+}
+.choices {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 30px;
+    background-color: rgb(255, 127, 39);
+    color: white;
+    width: 150px;
+}
+.choices div {
+    display: block;
+    cursor: pointer;        
+}
+*/
